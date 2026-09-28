@@ -79,6 +79,11 @@ and far more accurate than plain INT8. On an NVIDIA T4 at batch 1, every INT8 en
 the vendor's or mine, was slower than plain FP16 for these small models. There, FP16 is simply
 the better choice.
 
+On TI's chip I don't have a board, so I used TI's performance simulator on the segmentation
+model. Plain 8-bit: 12.0 ms per frame. With the fix: 13.8 ms, about 14% slower. Full 16-bit:
+21.5 ms, 78% slower. Most of the extra time comes from the few early layers kept at 16-bit.
+So the fix gets close to 16-bit accuracy for about a fifth of 16-bit's extra time.
+
 ## What I couldn't fix
 
 - EfficientNet-B1 on TI: still −8.9 points. TI's full 16-bit mode loses only 0.9, at 16-bit cost.
