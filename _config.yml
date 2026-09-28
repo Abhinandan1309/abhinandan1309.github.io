@@ -1,0 +1,17 @@
+title: Abhinandan
+description: Notes on deploying neural networks to edge hardware.
+url: "https://abhinandan1309.github.io"
+baseurl: ""
+theme: minima
+github_username: Abhinandan1309
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+minima:
+  social_links:
+    github: Abhinandan1309
+exclude:
+  - README.md
