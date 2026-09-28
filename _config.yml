@@ -1,17 +1,17 @@
-title: Abhinandan
+title: Abhinandan Adalegere Rajendra
 description: Notes on deploying neural networks to edge hardware.
 url: "https://abhinandan1309.github.io"
 baseurl: ""
 theme: minima
+author: Abhinandan Adalegere Rajendra
 github_username: Abhinandan1309
+linkedin_username: abhinandan-adalegere-rajendra-a40661133
+header_pages:
+  - about.md
 markdown: kramdown
-kramdown:
-  math_engine: mathjax
+show_excerpts: true
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-minima:
-  social_links:
-    github: Abhinandan1309
 exclude:
   - README.md
