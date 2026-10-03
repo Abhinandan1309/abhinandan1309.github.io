@@ -66,9 +66,17 @@ Top-1 change vs FP32, percentage points, 300–1,500 Imagenette validation image
 paired against FP32 on the same images. The S24 and T4 are real devices. The AMD and TI
 numbers come from the vendors' own quantizers and emulators on a PC.
 
-- 26 of 32 model–toolchain pairs end within 2.2 points of FP32 (24 within 2.0).
-- EfficientNet-B0: −75 → −0.1 (AMD), −12.8 → −0.7 (S24), −73 → −1.6 (TI), −52 → −0.1 (T4).
+- 25 of 32 model–toolchain pairs end within 2.2 points of FP32.
+- EfficientNet-B0: −75 → −0.1 (AMD), −12.8 → −2.6 (S24), −73 → −1.6 (TI), −52 → −0.1 (T4).
 - MobileNetV3-Small: −58 to −66 → −1.4 to −2.1 on all four.
+
+*Update, 3 Oct:* I picked each chip's recipe on these same images, which flatters them. So I
+re-ran the frozen recipes on images I had never used. On new Imagenette images, 18 of 32 pairs
+are within 2.2 points. On harder new images (ten dog breeds), 13 of 32. The collapse and the
+recovery hold everywhere: every model that collapsed comes back, the worst to −10 (B1 on TI).
+The Qualcomm results are identical on three toolchain versions. One cell changed: S24 B0 was
+−0.7 when I first measured it and is −2.6 now, likely a change in Qualcomm's cloud quantizer.
+Details are in the [checks](https://github.com/Abhinandan1309/anneal/blob/main/docs/benchmark_grid.md#checks-toolchain-version-and-holdout-images-2026-10-03).
 
 ## What it costs
 
@@ -86,7 +94,7 @@ So the fix gets close to 16-bit accuracy for about a fifth of 16-bit's extra tim
 
 ## What I couldn't fix
 
-- EfficientNet-B1 on TI: still −8.9 points. TI's full 16-bit mode loses only 0.9, at 16-bit cost.
+- EfficientNet-B1 on TI: still −8.9 points (−10.3 on new images). TI's full 16-bit mode loses only 0.9, at 16-bit cost.
 - MobileViT on TI: −4.2. TI's own 16-bit mode does better (−2.6).
 - EfficientViT-B0 on TensorRT: −70 → −12.8. Better, not good.
 - Intel OpenVINO doesn't have the problem at all, so the rewrite doesn't help there.
